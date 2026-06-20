@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Siti Express — Siti web trilingue per attività locali · IT / EN / DE</title>
+<meta name="description" content="Sito professionale trilingue (IT/EN/DE) per la tua attività, pronto in un giorno. Demo, prezzi chiari, hosting incluso." />
+<meta name="theme-color" content="#14100e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--ink:#14100e;--paper:#f5efe6;--accent:#c8602f;--accent-2:#e8a23d;--paper-2:#efe6d8;
+    --muted:#6b5d50;--line:rgba(28,23,20,.13);--ink-soft:rgba(28,23,20,.72);
+    --shadow:0 18px 50px -18px rgba(20,16,14,.5);--radius:18px;--maxw:1180px;--ease:cubic-bezier(.2,.7,.2,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:clamp(16px,1.05vw,18px);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,.display{font-family:"Fraunces",Georgia,serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,48px)}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:.95rem;padding:.85em 1.5em;border-radius:999px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .btn:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .btn--accent{background:var(--accent);border-color:var(--accent)}
+  .btn--ghost{background:transparent;color:inherit}
+  /* nav */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);background:color-mix(in srgb,var(--paper) 85%,transparent);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding-block:16px;gap:16px}
+  .brand{font-family:"Fraunces",serif;font-size:1.35rem;font-weight:600;display:flex;align-items:center;gap:.5em}
+  .brand .dot{width:.5em;height:.5em;border-radius:50%;background:var(--accent)}
+  .nav-links{display:flex;gap:28px;font-weight:500;font-size:.95rem}
+  .nav-links a{color:var(--ink-soft)}.nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;gap:12px;align-items:center}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper-2)}
+  .lang button{border:none;background:transparent;cursor:pointer;font-family:inherit;font-weight:600;font-size:.78rem;letter-spacing:.06em;padding:.5em .7em;color:var(--muted)}
+  .lang button.active{background:var(--ink);color:var(--paper)}
+  /* hero */
+  .hero{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:-30% -10% auto auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--accent) 0,transparent 65%);opacity:.5}
+  .hero::after{content:"";position:absolute;inset:auto auto -40% -15%;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,var(--accent-2) 0,transparent 65%);opacity:.25}
+  .hero .wrap{padding-block:clamp(70px,11vw,140px);position:relative}
+  .hero .eyebrow{color:var(--accent-2)}
+  .hero h1{font-size:clamp(2.8rem,7vw,5.4rem);margin:.2em 0 .35em;max-width:16ch}
+  .hero h1 em{font-style:italic;color:var(--accent-2)}
+  .hero p{font-size:clamp(1.1rem,1.6vw,1.35rem);color:rgba(245,239,230,.82);max-width:48ch;margin-bottom:2em}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .flags{display:inline-flex;gap:.5em;font-weight:700;letter-spacing:.1em;font-size:.85rem;color:var(--accent-2);border:1px solid rgba(245,239,230,.22);padding:.55em 1em;border-radius:999px}
+  section{padding-block:clamp(60px,8vw,104px)}
+  .sec-head{max-width:680px;margin-bottom:clamp(34px,4vw,56px)}
+  .sec-head h2{font-size:clamp(2rem,4vw,3.1rem);margin:.25em 0}
+  .sec-head p{color:var(--ink-soft)}
+  /* demos */
+  .demos{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .demo{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--paper-2);transition:transform .3s var(--ease),box-shadow .3s var(--ease);display:flex;flex-direction:column}
+  .demo:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .demo .prev{height:190px;display:flex;align-items:flex-end;padding:22px;color:#fff;font-family:"Fraunces",serif;font-size:1.6rem}
+  .demo .meta{padding:20px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .demo .meta small{color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:600}
+  .demo .open{font-weight:600;color:var(--accent)}
+  /* features */
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .f{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:26px}
+  .f .ic{font-size:1.6rem}
+  .f h3{font-size:1.12rem;margin:.5em 0 .3em}
+  .f p{font-size:.92rem;color:var(--ink-soft)}
+  /* pricing */
+  #prezzi{background:var(--paper-2)}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  .price{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:32px;display:flex;flex-direction:column}
+  .price.feat-card{background:var(--ink);color:var(--paper);transform:scale(1.03);box-shadow:var(--shadow)}
+  .price .tag{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+  .price.feat-card .tag{color:var(--accent-2)}
+  .price .amt{font-family:"Fraunces",serif;font-size:3rem;margin:.15em 0}
+  .price .amt small{font-size:1rem;color:var(--muted);font-family:"Hanken Grotesk"}
+  .price.feat-card .amt small{color:rgba(245,239,230,.6)}
+  .price ul{list-style:none;margin:1em 0 1.6em;display:flex;flex-direction:column;gap:.6em}
+  .price li{display:flex;gap:.55em;font-size:.95rem}.price li::before{content:"✓";color:var(--accent);font-weight:700}
+  .price.feat-card li::before{color:var(--accent-2)}
+  .price .btn{margin-top:auto;justify-content:center}
+  .extra{text-align:center;color:var(--ink-soft);margin-top:26px;font-size:.95rem}
+  /* contact */
+  .cta{background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:clamp(40px,6vw,72px);text-align:center;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;inset:-50% auto auto 50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,var(--accent) 0,transparent 65%);opacity:.35}
+  .cta h2{font-size:clamp(2rem,4vw,3rem);position:relative}
+  .cta p{color:rgba(245,239,230,.8);margin:.6em auto 1.6em;max-width:42ch;position:relative}
+  footer{padding-block:40px;border-top:1px solid var(--line);margin-top:60px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:.9rem}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:920px){.demos,.feat,.price-grid{grid-template-columns:1fr}.price.feat-card{transform:none}.nav-links{display:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="dot"></span>Siti Express</a>
+    <nav class="nav-links">
+      <a href="#demos" data-i18n="navDemos">Esempi</a>
+      <a href="#prezzi" data-i18n="navPrices">Prezzi</a>
+      <a href="#contatti" data-i18n="navContact">Contatti</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang" id="lang"><button data-lang="it">IT</button><button data-lang="en">EN</button><button data-lang="de">DE</button></div>
+      <a class="btn btn--accent" href="#contatti" data-i18n="navCta">Richiedi il tuo</a>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-i18n="heroEyebrow">Siti web per attività locali</span>
+    <h1 class="reveal" data-i18n="heroTitle" data-i18n-html>Il tuo sito, <em>trilingue</em>, pronto in un giorno.</h1>
+    <p class="reveal" data-i18n="heroLead">Un sito professionale in italiano, inglese e tedesco — perfetto per la zona di confine. Veloce, su misura, hosting incluso.</p>
+    <div class="hero-cta reveal">
+      <a class="btn btn--accent" href="#demos" data-i18n="heroBtn1">Vedi gli esempi</a>
+      <a class="btn btn--ghost" href="#contatti" style="border-color:rgba(245,239,230,.4);color:var(--paper)" data-i18n="heroBtn2">Scrivimi</a>
+      <span class="flags">🇮🇹 IT · 🇬🇧 EN · 🇩🇪 DE</span>
+    </div>
+  </div>
+</section>
+
+<section id="demos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="demosEyebrow">Esempi dal vivo</span>
+      <h2 data-i18n="demosTitle">Guarda cosa consegno.</h2>
+      <p data-i18n="demosSub">Quattro attività di esempio (fittizie) della zona — clicca per aprire il sito vero e cambia lingua in alto a destra.</p>
+    </div>
+    <div class="demos">
+      <a class="demo reveal" href="sites/trattoria-al-ponte/index.html">
+        <div class="prev" style="background:linear-gradient(135deg,#7a3a1f,#c8602f)">Trattoria al Ponte</div>
+        <div class="meta"><small data-i18n="catRestaurant">Ristorante · Tarvisio</small><span class="open">Apri →</span></div>
+      </a>
+      <a class="demo reveal" href="sites/cafe-bergblick/index.html">
+        <div class="prev" style="background:linear-gradient(135deg,#1f4a36,#2f6f4e)">Café Bergblick</div>
+        <div class="meta"><small data-i18n="catCafe">Caffè · Arnoldstein</small><span class="open">Apri →</span></div>
+      </a>
+      <a class="demo reveal" href="sites/studio-lucia/index.html">
+        <div class="prev" style="background:linear-gradient(135deg,#6e2748,#a23e6b)">Studio Bellezza Lucia</div>
+        <div class="meta"><small data-i18n="catBeauty">Bellezza · Villach</small><span class="open">Apri →</span></div>
+      </a>
+      <a class="demo reveal" href="sites/alpen-werkstatt/index.html">
+        <div class="prev" style="background:linear-gradient(135deg,#1c3e5e,#2b5c8a)">Alpen Auto Werkstatt</div>
+        <div class="meta"><small data-i18n="catAuto">Officina · Arnoldstein</small><span class="open">Apri →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="cosa">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow" data-i18n="featEyebrow">Cosa ottieni</span><h2 data-i18n="featTitle">Tutto incluso, zero pensieri.</h2></div>
+    <div class="feat">
+      <div class="f reveal"><div class="ic">🌍</div><h3 data-i18n="f1t">3 lingue</h3><p data-i18n="f1p">Italiano, inglese e tedesco con selettore di lingua, già pronti.</p></div>
+      <div class="f reveal"><div class="ic">⚡</div><h3 data-i18n="f2t">Pronto subito</h3><p data-i18n="f2p">Online in giornata. Veloce su mobile e su Google.</p></div>
+      <div class="f reveal"><div class="ic">📞</div><h3 data-i18n="f3t">Pensato per chiamare</h3><p data-i18n="f3p">Pulsante telefono, mappa e orari sempre in evidenza.</p></div>
+      <div class="f reveal"><div class="ic">🔒</div><h3 data-i18n="f4t">Hosting incluso</h3><p data-i18n="f4p">Dominio, hosting e messa online: ci penso io.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="prezzi">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow" data-i18n="priceEyebrow">Prezzi chiari</span><h2 data-i18n="priceTitle">Un prezzo onesto, senza sorprese.</h2></div>
+    <div class="price-grid">
+      <div class="price reveal">
+        <span class="tag">Starter</span>
+        <div class="amt">€150</div>
+        <ul><li data-i18n="s1">Sito one-page</li><li data-i18n="s2">1 lingua</li><li data-i18n="s3">Online + hosting incluso</li></ul>
+        <a class="btn btn--ghost" href="#contatti" style="border-color:var(--ink)" data-i18n="choose">Scegli</a>
+      </div>
+      <div class="price feat-card reveal">
+        <span class="tag" data-i18n="bestValue">★ Consigliato</span>
+        <div class="amt">€390</div>
+        <ul><li data-i18n="m1">Sito one-page trilingue (IT/EN/DE)</li><li data-i18n="m2">Profilo Google sistemato</li><li data-i18n="m3">Pulsante chiama / prenota</li><li data-i18n="m4">Online + hosting incluso</li></ul>
+        <a class="btn btn--accent" href="#contatti" data-i18n="choose2">Scegli</a>
+      </div>
+      <div class="price reveal">
+        <span class="tag">Completo</span>
+        <div class="amt">€890</div>
+        <ul><li data-i18n="c1">Tutto di Standard</li><li data-i18n="c2">5 post social</li><li data-i18n="c3">Ritocco logo</li><li data-i18n="c4">3 foto ottimizzate</li></ul>
+        <a class="btn btn--ghost" href="#contatti" style="border-color:var(--ink)" data-i18n="choose3">Scegli</a>
+      </div>
+    </div>
+    <p class="extra reveal" data-i18n="extra">Extra: lingua aggiuntiva +€90 · manutenzione €29/mese · acconto 50% all'avvio.</p>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2 data-i18n="ctaTitle">Vuoi un sito così per la tua attività?</h2>
+      <p data-i18n="ctaSub">Scrivimi: ti preparo un esempio gratuito, senza impegno. Lo paghi solo se ti piace.</p>
+      <!-- MODIFICA: metti qui il tuo numero/WhatsApp -->
+      <a class="btn btn--accent" href="mailto:kevinmelchioro12@gmail.com?subject=Vorrei%20un%20sito%20trilingue" data-i18n="ctaBtn">✉️ Scrivimi ora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="brand"><span class="dot"></span>Siti Express</div>
+    <div data-i18n="footMade">Siti web trilingue per attività locali · Kevin Melchioro</div>
+  </div>
+</footer>
+
+<script>
+  const I18N = {
+   it:{navDemos:"Esempi",navPrices:"Prezzi",navContact:"Contatti",navCta:"Richiedi il tuo",
+    heroEyebrow:"Siti web per attività locali",heroTitle:"Il tuo sito, <em>trilingue</em>, pronto in un giorno.",heroLead:"Un sito professionale in italiano, inglese e tedesco — perfetto per la zona di confine. Veloce, su misura, hosting incluso.",heroBtn1:"Vedi gli esempi",heroBtn2:"Scrivimi",
+    demosEyebrow:"Esempi dal vivo",demosTitle:"Guarda cosa consegno.",demosSub:"Quattro attività di esempio (fittizie) della zona — clicca per aprire il sito vero e cambia lingua in alto a destra.",
+    catRestaurant:"Ristorante · Tarvisio",catCafe:"Caffè · Arnoldstein",catBeauty:"Bellezza · Villach",catAuto:"Officina · Arnoldstein",
+    featEyebrow:"Cosa ottieni",featTitle:"Tutto incluso, zero pensieri.",f1t:"3 lingue",f1p:"Italiano, inglese e tedesco con selettore di lingua, già pronti.",f2t:"Pronto subito",f2p:"Online in giornata. Veloce su mobile e su Google.",f3t:"Pensato per chiamare",f3p:"Pulsante telefono, mappa e orari sempre in evidenza.",f4t:"Hosting incluso",f4p:"Dominio, hosting e messa online: ci penso io.",
+    priceEyebrow:"Prezzi chiari",priceTitle:"Un prezzo onesto, senza sorprese.",bestValue:"★ Consigliato",choose:"Scegli",choose2:"Scegli",choose3:"Scegli",
+    s1:"Sito one-page",s2:"1 lingua",s3:"Online + hosting incluso",
+    m1:"Sito one-page trilingue (IT/EN/DE)",m2:"Profilo Google sistemato",m3:"Pulsante chiama / prenota",m4:"Online + hosting incluso",
+    c1:"Tutto di Standard",c2:"5 post social",c3:"Ritocco logo",c4:"3 foto ottimizzate",
+    extra:"Extra: lingua aggiuntiva +€90 · manutenzione €29/mese · acconto 50% all'avvio.",
+    ctaTitle:"Vuoi un sito così per la tua attività?",ctaSub:"Scrivimi: ti preparo un esempio gratuito, senza impegno. Lo paghi solo se ti piace.",ctaBtn:"✉️ Scrivimi ora",footMade:"Siti web trilingue per attività locali · Kevin Melchioro"},
+   en:{navDemos:"Examples",navPrices:"Pricing",navContact:"Contact",navCta:"Get yours",
+    heroEyebrow:"Websites for local businesses",heroTitle:"Your website, <em>trilingual</em>, ready in a day.",heroLead:"A professional site in Italian, English and German — perfect for the border region. Fast, tailored, hosting included.",heroBtn1:"See the examples",heroBtn2:"Email me",
+    demosEyebrow:"Live examples",demosTitle:"See what I deliver.",demosSub:"Four sample (fictional) local businesses — click to open the real site and switch language top-right.",
+    catRestaurant:"Restaurant · Tarvisio",catCafe:"Café · Arnoldstein",catBeauty:"Beauty · Villach",catAuto:"Garage · Arnoldstein",
+    featEyebrow:"What you get",featTitle:"All included, zero hassle.",f1t:"3 languages",f1p:"Italian, English and German with a language switcher, ready to go.",f2t:"Ready fast",f2p:"Online the same day. Fast on mobile and on Google.",f3t:"Built to get calls",f3p:"Phone button, map and hours always front and centre.",f4t:"Hosting included",f4p:"Domain, hosting and going live: I handle it.",
+    priceEyebrow:"Clear pricing",priceTitle:"An honest price, no surprises.",bestValue:"★ Recommended",choose:"Choose",choose2:"Choose",choose3:"Choose",
+    s1:"One-page site",s2:"1 language",s3:"Online + hosting included",
+    m1:"Trilingual one-page site (IT/EN/DE)",m2:"Google profile cleaned up",m3:"Call / book button",m4:"Online + hosting included",
+    c1:"Everything in Standard",c2:"5 social posts",c3:"Logo touch-up",c4:"3 optimised photos",
+    extra:"Extras: extra language +€90 · maintenance €29/month · 50% deposit to start.",
+    ctaTitle:"Want a site like this for your business?",ctaSub:"Message me: I'll prepare a free sample, no obligation. You only pay if you like it.",ctaBtn:"✉️ Email me now",footMade:"Trilingual websites for local businesses · Kevin Melchioro"},
+   de:{navDemos:"Beispiele",navPrices:"Preise",navContact:"Kontakt",navCta:"Jetzt anfragen",
+    heroEyebrow:"Websites für lokale Betriebe",heroTitle:"Ihre Website, <em>dreisprachig</em>, in einem Tag fertig.",heroLead:"Eine professionelle Website auf Italienisch, Englisch und Deutsch — ideal für die Grenzregion. Schnell, individuell, Hosting inklusive.",heroBtn1:"Beispiele ansehen",heroBtn2:"Schreiben Sie mir",
+    demosEyebrow:"Live-Beispiele",demosTitle:"Sehen Sie, was ich liefere.",demosSub:"Vier Beispiel-Betriebe (fiktiv) aus der Region — klicken Sie, um die echte Seite zu öffnen, und wechseln Sie oben rechts die Sprache.",
+    catRestaurant:"Restaurant · Tarvis",catCafe:"Café · Arnoldstein",catBeauty:"Beauty · Villach",catAuto:"Werkstatt · Arnoldstein",
+    featEyebrow:"Das bekommen Sie",featTitle:"Alles inklusive, kein Aufwand.",f1t:"3 Sprachen",f1p:"Italienisch, Englisch und Deutsch mit Sprachumschalter, fertig.",f2t:"Schnell fertig",f2p:"Am selben Tag online. Schnell am Handy und bei Google.",f3t:"Auf Anrufe ausgelegt",f3p:"Telefon-Button, Karte und Öffnungszeiten immer im Blick.",f4t:"Hosting inklusive",f4p:"Domain, Hosting und Veröffentlichung: übernehme ich.",
+    priceEyebrow:"Klare Preise",priceTitle:"Ein ehrlicher Preis, keine Überraschungen.",bestValue:"★ Empfohlen",choose:"Wählen",choose2:"Wählen",choose3:"Wählen",
+    s1:"One-Page-Website",s2:"1 Sprache",s3:"Online + Hosting inklusive",
+    m1:"Dreisprachige One-Page-Website (IT/EN/DE)",m2:"Google-Profil aufgeräumt",m3:"Anruf- / Buchungs-Button",m4:"Online + Hosting inklusive",
+    c1:"Alles aus Standard",c2:"5 Social-Posts",c3:"Logo-Auffrischung",c4:"3 optimierte Fotos",
+    extra:"Extras: zusätzliche Sprache +€90 · Wartung €29/Monat · 50% Anzahlung zum Start.",
+    ctaTitle:"Möchten Sie so eine Website für Ihren Betrieb?",ctaSub:"Schreiben Sie mir: Ich erstelle ein kostenloses Beispiel, unverbindlich. Sie zahlen nur, wenn es Ihnen gefällt.",ctaBtn:"✉️ Jetzt schreiben",footMade:"Dreisprachige Websites für lokale Betriebe · Kevin Melchioro"},
+  };
+  function setLang(code){
+    const d=I18N[code]; if(!d) return;
+    document.documentElement.lang=code;
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const v=d[el.getAttribute("data-i18n")]; if(v===undefined) return;
+      if(el.hasAttribute("data-i18n-html")) el.innerHTML=v; else el.textContent=v;
+    });
+    document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("active",b.dataset.lang===code));
+    try{localStorage.setItem("lang",code);}catch(e){}
+  }
+  document.getElementById("lang").addEventListener("click",e=>{if(e.target.dataset.lang)setLang(e.target.dataset.lang);});
+  let start="it";try{const s=localStorage.getItem("lang");if(s)start=s;else{const n=(navigator.language||"it").slice(0,2);if(["it","en","de"].includes(n))start=n;}}catch(e){}
+  setLang(start);
+  const io=new IntersectionObserver((en)=>{en.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add("in"),i*60);io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
