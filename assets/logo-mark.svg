@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Melchioro lion crest">
+  <defs>
+    <path id="tuft" d="M100 40 C108 60 112 76 105 90 L95 90 C88 76 92 60 100 40 Z"/>
+    <path id="tuft2" d="M100 56 C106 70 109 82 104 92 L96 92 C91 82 94 70 100 56 Z"/>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f4488"/>
+      <stop offset="1" stop-color="#122f63"/>
+    </linearGradient>
+  </defs>
+
+  <!-- mane: outer ring (dark) -->
+  <g fill="#0f2a57">
+    <use href="#tuft" transform="rotate(0 100 100)"/>
+    <use href="#tuft" transform="rotate(22.5 100 100)"/>
+    <use href="#tuft" transform="rotate(45 100 100)"/>
+    <use href="#tuft" transform="rotate(67.5 100 100)"/>
+    <use href="#tuft" transform="rotate(90 100 100)"/>
+    <use href="#tuft" transform="rotate(112.5 100 100)"/>
+    <use href="#tuft" transform="rotate(135 100 100)"/>
+    <use href="#tuft" transform="rotate(157.5 100 100)"/>
+    <use href="#tuft" transform="rotate(180 100 100)"/>
+    <use href="#tuft" transform="rotate(202.5 100 100)"/>
+    <use href="#tuft" transform="rotate(225 100 100)"/>
+    <use href="#tuft" transform="rotate(247.5 100 100)"/>
+    <use href="#tuft" transform="rotate(270 100 100)"/>
+    <use href="#tuft" transform="rotate(292.5 100 100)"/>
+    <use href="#tuft" transform="rotate(315 100 100)"/>
+    <use href="#tuft" transform="rotate(337.5 100 100)"/>
+  </g>
+  <!-- mane: inner ring (mid blue), offset -->
+  <g fill="#1a3c78">
+    <use href="#tuft2" transform="rotate(11.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(33.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(56.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(78.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(101.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(123.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(146.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(168.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(191.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(213.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(236.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(258.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(281.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(303.75 100 100)"/>
+    <use href="#tuft2" transform="rotate(326.25 100 100)"/>
+    <use href="#tuft2" transform="rotate(348.75 100 100)"/>
+  </g>
+
+  <!-- ears -->
+  <circle cx="78" cy="80" r="10" fill="#16356e"/>
+  <circle cx="122" cy="80" r="10" fill="#16356e"/>
+
+  <!-- face -->
+  <ellipse cx="100" cy="103" rx="32" ry="34" fill="url(#face)"/>
+
+  <!-- crown -->
+  <g fill="#caa84a">
+    <path d="M82 44 L118 44 L115 30 L106 38 L100 24 L94 38 L85 30 Z"/>
+    <rect x="84" y="45" width="32" height="7" rx="2"/>
+    <circle cx="100" cy="24" r="3"/>
+    <circle cx="85" cy="30" r="2.4"/>
+    <circle cx="115" cy="30" r="2.4"/>
+  </g>
+
+  <!-- face features (light negative-space style) -->
+  <g fill="#eaf0fb">
+    <path d="M88 100 q6 -6 12 0 q-6 4 -12 0 Z"/>
+    <path d="M112 100 q-6 -6 -12 0 q6 4 12 0 Z"/>
+  </g>
+  <!-- snout + nose -->
+  <path d="M100 108 l7 6 q-7 6 -14 0 Z" fill="#0f2a57"/>
+  <path d="M100 120 v6 M93 124 q7 4 14 0" stroke="#0f2a57" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- brow line -->
+  <path d="M86 92 q14 -7 28 0" stroke="#0f2a57" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>
