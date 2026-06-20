@@ -1,6 +1,6 @@
-# Siti Express 🌍 — siti web trilingue (IT/EN/DE) per attività locali
+# Siti Express 🌍 — siti web multilingua (IT/EN/DE) per attività locali
 
-Sistema completo per **creare e vendere** siti one-page trilingue, in giornata, con un laptop.
+Sistema completo per **creare e vendere** siti one-page multilingua, in giornata, con un laptop.
 Pensato per la zona di confine (Italia / Austria / turismo), dove IT + EN + DE fa la differenza.
 
 **Demo live:** https://kevinmelchioro12-rgb.github.io/siti-express/
@@ -19,8 +19,8 @@ La vendita giusta è **privata**: generi un esempio *per quel titolare* e glielo
 
 | File / cartella | Cos'è |
 |---|---|
-| `index.html` | Homepage **portfolio** trilingue con le 4 demo e i prezzi (= pagina GitHub Pages) |
-| `template/site-template.html` | Il template trilingue con i segnaposto |
+| `index.html` | Homepage **portfolio** multilingua con le 4 demo e i prezzi (= pagina GitHub Pages) |
+| `template/site-template.html` | Il template multilingua con i segnaposto |
 | `build_sites.py` | **Il motore**: legge `prospects.csv` + template → genera un sito per ogni attività |
 | `prospects.csv` | La lista delle attività (una riga = un sito) |
 | `sites/<slug>/index.html` | I siti generati (uno a cartella) |
@@ -70,4 +70,4 @@ Vedi [`PRICING.md`](PRICING.md). In breve: **Starter €150 · Standard €390 (
 
 ## 🔁 Il giro completo (riassunto)
 **Trova attività con sito assente/vecchio → genera l'esempio → mostralo al titolare → incassa → ripeti.**
-Vinci con il trilingue: nella zona di confine nessuno lo offre di serie.
+Vinci con il multilingua: nella zona di confine nessuno lo offre di serie.

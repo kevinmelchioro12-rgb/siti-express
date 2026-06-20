@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ÆON — Alta orologeria · scroll-driven demo (Melchioro)</title>
+<meta name="description" content="Demo scroll-driven: l'orologio si scompone mentre scorri. Visual hook per siti di orologeria. By Melchioro." />
+<meta name="theme-color" content="#0a0a0c" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#0a0a0c;--bg2:#121319;--gold:#c9a24a;--gold-2:#e7c97a;--steel:#9aa3b2;--text:#eef0f4;--muted:#8b90a0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"Jost",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .serif{font-family:"Cormorant Garamond",serif}
+  .wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(20px,5vw,48px)}
+  .eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  a{color:inherit;text-decoration:none}
+  /* top bar */
+  header{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;
+    padding:18px clamp(20px,5vw,48px);mix-blend-mode:difference}
+  .logo{font-family:"Cormorant Garamond",serif;font-size:1.5rem;letter-spacing:.35em;font-weight:600}
+  .back{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  /* hero */
+  .hero{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;
+    background:radial-gradient(circle at 50% 30%,#1a1c24 0,var(--bg) 60%)}
+  .hero h1{font-size:clamp(3rem,10vw,8rem);font-weight:500;letter-spacing:.02em;line-height:.95}
+  .hero .sub{color:var(--muted);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;margin-top:1.4em}
+  .scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+  /* explode track */
+  .track{height:420vh;position:relative}
+  .stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+  .stage svg{width:min(86vw,500px);height:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+  .part{transition:transform .05s linear}
+  .lbl-t,.lbl-s,.lead-line{display:none}
+  .lbl-t{font-family:"Jost",sans-serif;font-size:13px;fill:var(--gold);letter-spacing:.04em}
+  .lbl-s{font-family:"Jost",sans-serif;font-size:9px;fill:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+  .lead-line{stroke:var(--gold);stroke-width:.8;opacity:.5}
+  .stage-cap{position:absolute;top:13vh;left:0;right:0;text-align:center}
+  .stage-cap .n{font-family:"Cormorant Garamond",serif;font-size:clamp(1.6rem,3vw,2.4rem)}
+  .stage-cap .e{color:var(--muted);letter-spacing:.3em;text-transform:uppercase;font-size:.72rem}
+  .progress{position:absolute;bottom:7vh;left:50%;transform:translateX(-50%);width:min(60vw,360px);height:2px;background:rgba(255,255,255,.12);border-radius:2px}
+  .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:2px}
+  /* specs */
+  .specs{padding:clamp(70px,12vw,160px) 0;background:linear-gradient(180deg,var(--bg),#0d0e13)}
+  .specs h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:500;max-width:18ch;margin-bottom:.8em}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:40px}
+  .spec{border-top:1px solid rgba(201,162,74,.3);padding-top:18px}
+  .spec .v{font-family:"Cormorant Garamond",serif;font-size:2.6rem;color:var(--gold)}
+  .spec .k{color:var(--muted);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+  .cta{padding:clamp(70px,12vw,150px) 0;text-align:center}
+  .cta h2{font-size:clamp(2rem,5vw,3.4rem);font-weight:500;margin-bottom:.6em}
+  .btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:.9em 2.4em;border-radius:2px;
+    letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;transition:.3s}
+  .btn:hover{background:var(--gold);color:#0a0a0c}
+  .note{text-align:center;color:var(--muted);font-size:.8rem;padding:30px;border-top:1px solid rgba(255,255,255,.08)}
+  .note a{color:var(--gold)}
+  @media(max-width:740px){.grid{grid-template-columns:1fr}.lbl-t,.lbl-s,.lead-line{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ÆON</div>
+  <a class="back" href="../../index.html">← Melchioro</a>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Manifattura · Calibro 01</div>
+    <h1 class="serif">L'Heure<br>Nue</h1>
+    <div class="sub">142 componenti · un solo gesto</div>
+  </div>
+  <div class="scroll-hint">scorri per scomporre ↓</div>
+</section>
+
+<div class="track" id="track">
+  <div class="stage">
+    <div class="stage-cap"><div class="n serif" id="capN">Il movimento</div><div class="e" id="capE">Calibro 01 · automatico</div></div>
+    <svg viewBox="0 0 460 460" id="watch" aria-label="Orologio scomponibile">
+      <defs>
+        <radialGradient id="glass" cx="40%" cy="35%" r="75%">
+          <stop offset="0" stop-color="#dfe8f5" stop-opacity=".5"/><stop offset="1" stop-color="#7f93b8" stop-opacity=".18"/>
+        </radialGradient>
+        <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#cfd6e2"/><stop offset=".5" stop-color="#8c95a6"/><stop offset="1" stop-color="#5b6373"/>
+        </linearGradient>
+        <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#e7c97a"/><stop offset="1" stop-color="#a9842f"/>
+        </linearGradient>
+        <linearGradient id="leather" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3a2a22"/><stop offset="1" stop-color="#241812"/>
+        </linearGradient>
+      </defs>
+
+      <!-- strap top -->
+      <g class="part" data-dy="-300">
+        <rect x="196" y="-30" width="68" height="150" rx="16" fill="url(#leather)" stroke="#1c130d"/>
+        <line x1="214" y1="0" x2="214" y2="110" stroke="#1c130d" stroke-width="1.2" opacity=".6"/>
+        <line x1="246" y1="0" x2="246" y2="110" stroke="#1c130d" stroke-width="1.2" opacity=".6"/>
+        <text class="lbl-t" x="300" y="60">Cinturino</text><text class="lbl-s" x="300" y="76">alligatore cucito a mano</text>
+        <line class="lead-line" x1="270" y1="55" x2="296" y2="55"/>
+      </g>
+      <!-- strap bottom -->
+      <g class="part" data-dy="250">
+        <rect x="196" y="340" width="68" height="150" rx="16" fill="url(#leather)" stroke="#1c130d"/>
+        <line x1="214" y1="350" x2="214" y2="460" stroke="#1c130d" stroke-width="1.2" opacity=".6"/>
+        <line x1="246" y1="350" x2="246" y2="460" stroke="#1c130d" stroke-width="1.2" opacity=".6"/>
+      </g>
+      <!-- caseback -->
+      <g class="part" data-dy="170">
+        <circle cx="230" cy="230" r="138" fill="url(#steel)" stroke="#3a3f4a"/>
+        <circle cx="230" cy="230" r="110" fill="none" stroke="#6b7382" stroke-width="2"/>
+        <g fill="#5b6373">
+          <circle cx="230" cy="110" r="5"/><circle cx="230" cy="350" r="5"/><circle cx="110" cy="230" r="5"/><circle cx="350" cy="230" r="5"/>
+        </g>
+        <text class="lbl-t" x="382" y="232">Fondello</text><text class="lbl-s" x="382" y="248">acciaio 316L · vetro zaffiro</text>
+        <line class="lead-line" x1="368" y1="228" x2="378" y2="228"/>
+      </g>
+      <!-- movement / gears -->
+      <g class="part" data-dy="80">
+        <circle cx="230" cy="230" r="104" fill="#15171d" stroke="url(#gold)" stroke-width="2"/>
+        <g fill="none" stroke="url(#gold)" stroke-width="3">
+          <circle cx="195" cy="205" r="34" stroke-dasharray="4 7"/>
+          <circle cx="262" cy="250" r="26" stroke-dasharray="4 6"/>
+          <circle cx="232" cy="290" r="18" stroke-dasharray="3 5"/>
+        </g>
+        <circle cx="195" cy="205" r="7" fill="url(#gold)"/><circle cx="262" cy="250" r="6" fill="url(#gold)"/><circle cx="232" cy="290" r="5" fill="url(#gold)"/>
+        <text class="lbl-t" x="350" y="300">Movimento</text><text class="lbl-s" x="350" y="316">automatico · 42h riserva</text>
+        <line class="lead-line" x1="320" y1="296" x2="346" y2="296"/>
+      </g>
+      <!-- case ring (anchor) -->
+      <g class="part" data-dy="0">
+        <circle cx="230" cy="230" r="132" fill="none" stroke="url(#steel)" stroke-width="14"/>
+      </g>
+      <!-- dial + markers -->
+      <g class="part" data-dy="-55">
+        <circle cx="230" cy="230" r="100" fill="#0e0f14"/>
+        <circle cx="230" cy="230" r="100" fill="none" stroke="#23252e" stroke-width="2"/>
+        <g stroke="url(#gold)" stroke-width="3" stroke-linecap="round">
+          <line x1="230" y1="142" x2="230" y2="158"/><line x1="230" y1="302" x2="230" y2="318"/>
+          <line x1="142" y1="230" x2="158" y2="230"/><line x1="302" y1="230" x2="318" y2="230"/>
+        </g>
+        <g fill="var(--muted)">
+          <circle cx="291" cy="168" r="2.4"/><circle cx="292" cy="292" r="2.4"/><circle cx="168" cy="292" r="2.4"/><circle cx="168" cy="168" r="2.4"/>
+        </g>
+        <text x="230" y="200" text-anchor="middle" fill="#7d8190" font-family="Cormorant Garamond" font-size="15" letter-spacing="3">ÆON</text>
+        <text class="lbl-t" x="350" y="170">Quadrante</text><text class="lbl-s" x="350" y="186">laccato · indici oro</text>
+        <line class="lead-line" x1="312" y1="200" x2="346" y2="178"/>
+      </g>
+      <!-- hands -->
+      <g class="part" data-dy="-120">
+        <line x1="230" y1="230" x2="230" y2="172" stroke="url(#gold)" stroke-width="6" stroke-linecap="round"/>
+        <line x1="230" y1="230" x2="282" y2="250" stroke="url(#gold)" stroke-width="4" stroke-linecap="round"/>
+        <line x1="230" y1="230" x2="196" y2="276" stroke="#d8584a" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="230" cy="230" r="6" fill="url(#gold)"/>
+        <text class="lbl-t" x="360" y="232">Lancette</text><text class="lbl-s" x="360" y="248">oro brunito · superluminova</text>
+        <line class="lead-line" x1="300" y1="228" x2="356" y2="228"/>
+      </g>
+      <!-- bezel -->
+      <g class="part" data-dy="-190">
+        <circle cx="230" cy="230" r="120" fill="none" stroke="url(#gold)" stroke-width="10"/>
+        <g stroke="#8a6a22" stroke-width="1">
+          <line x1="230" y1="104" x2="230" y2="118"/><line x1="356" y1="230" x2="342" y2="230"/><line x1="230" y1="356" x2="230" y2="342"/><line x1="104" y1="230" x2="118" y2="230"/>
+        </g>
+        <text class="lbl-t" x="350" y="120">Lunetta</text><text class="lbl-s" x="350" y="136">oro 18k · zigrinata</text>
+        <line class="lead-line" x1="320" y1="124" x2="346" y2="124"/>
+      </g>
+      <!-- crystal -->
+      <g class="part" data-dy="-260">
+        <circle cx="230" cy="230" r="112" fill="url(#glass)" stroke="#cfe0ff" stroke-opacity=".4"/>
+        <path d="M170 180 A112 112 0 0 1 250 138" fill="none" stroke="#ffffff" stroke-opacity=".5" stroke-width="6" stroke-linecap="round"/>
+        <text class="lbl-t" x="352" y="148">Vetro zaffiro</text><text class="lbl-s" x="352" y="164">antiriflesso · bombato</text>
+        <line class="lead-line" x1="322" y1="150" x2="348" y2="150"/>
+      </g>
+      <!-- crown -->
+      <g class="part" data-dx="70" data-dy="-30">
+        <rect x="358" y="214" width="26" height="32" rx="4" fill="url(#gold)" stroke="#8a6a22"/>
+        <rect x="350" y="222" width="10" height="16" rx="2" fill="url(#steel)"/>
+      </g>
+    </svg>
+    <div class="progress"><i id="bar"></i></div>
+  </div>
+</div>
+
+<section class="specs">
+  <div class="wrap">
+    <div class="eyebrow">Calibro 01</div>
+    <h2 class="serif">Ogni componente, una scelta deliberata.</h2>
+    <div class="grid">
+      <div class="spec"><div class="v">142</div><div class="k">componenti</div></div>
+      <div class="spec"><div class="v">42h</div><div class="k">riserva di carica</div></div>
+      <div class="spec"><div class="v">28.800</div><div class="k">alternanze / ora</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="eyebrow">Su appuntamento</div>
+    <h2 class="serif">Provala al polso.</h2>
+    <a class="btn" href="#">Prenota una visione</a>
+  </div>
+</section>
+
+<div class="note">Demo <strong>scroll-driven</strong> — esempio di "visual hook" per orologerie · realizzato da <a href="../../index.html">Melchioro</a> (codice puro, 0 immagini). Le foto reali si possono aggiungere con Higgsfield.</div>
+
+<script>
+  const track = document.getElementById('track');
+  const parts = [...document.querySelectorAll('.part')];
+  const labels = [...document.querySelectorAll('.lbl-t,.lbl-s,.lead-line')];
+  const bar = document.getElementById('bar');
+  const capN = document.getElementById('capN'), capE = document.getElementById('capE');
+  const caps = [
+    ['Assemblato','L’Heure Nue · ref. 01'],
+    ['Vetro & lunetta','zaffiro bombato · oro 18k'],
+    ['Quadrante & lancette','laccato · oro brunito'],
+    ['Movimento & cassa','calibro 01 · 142 parti'],
+  ];
+  function onScroll(){
+    const r = track.getBoundingClientRect();
+    const total = track.offsetHeight - window.innerHeight;
+    const p = Math.min(1, Math.max(0, -r.top / total));
+    const e = p<.5 ? p*2 : 1 - (p-.5)*2;       // esplode poi riassembla
+    const F=0.6;
+    for(const g of parts){
+      const dx = (+g.dataset.dx||0)*e*F, dy = (+g.dataset.dy||0)*e*F;
+      g.style.transform = `translate(${dx}px,${dy}px)`;
+    }
+    const lo = Math.min(1, Math.max(0,(e-.08)*4));
+    for(const l of labels) l.style.opacity = lo;
+    bar.style.width = (p*100)+'%';
+    const ci = Math.min(caps.length-1, Math.floor(p*caps.length));
+    capN.textContent = caps[ci][0]; capE.textContent = caps[ci][1];
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll); onScroll();
+</script>
+</body>
+</html>
